@@ -36,6 +36,10 @@ Each major change followed the same loop:
 
 Prompt -> Build -> Compile -> Preview -> Interact -> Inspect -> Refine
 
+## How CLAD was used
+
+CLAD and Codex operated against the live Lens Studio project through the connected Lens Studio integration. They were used to inspect scene hierarchy and runtime state, modify TypeScript and scene configuration, compile the project, run Preview, simulate interactions, inspect Logger output, capture screenshots, compare visual results, diagnose regressions, and repeat implementation passes. The workflow stayed connected to the live runtime instead of moving as a one off script pass.
+
 ## 1. Establish the spatial planning concept
 
 ### Prompt
@@ -44,7 +48,7 @@ Prompt -> Build -> Compile -> Preview -> Interact -> Inspect -> Refine
 
 ### Result
 
-The first build introduced Today and overflow containers, task cards, duration labels, and a default five hour day. Tasks were grouped by lane and shown with capacity totals so that overloaded schedules became visibly visible in space.
+The first build introduced Today and overflow containers, task cards, duration labels, and a default five hour day. Tasks were grouped by lane and shown with capacity totals so that overloaded schedules became immediately visible in space.
 
 ### Verification
 
@@ -154,7 +158,7 @@ Preserve a readable frame while reintroducing a wider spread through the rebuilt
 
 ### Result
 
-Project documentation was consolidated into permanent memory and a Chronofold skill profile. This recorded API boundaries, interaction lifecycles, camera and coordinate checks, and screenshot verification flow.
+Lens Studio documentation and project-specific implementation rules were consolidated into a reusable Chronofold development guide covering API boundaries, interaction lifecycles, camera coordinates, Preview verification, and spatial UI constraints.
 
 ### Verification
 
@@ -162,7 +166,7 @@ The memory and skill artifacts were read before the next visual passes. All Lens
 
 ### Issue
 
-Scene order, dynamic rebuild behavior, and input interactions still needed several in Preview experiments before behavior matched intent.
+Scene order, dynamic rebuild behavior, and input interactions still required several experiments in Preview before the behavior matched the intended result.
 
 ### Follow-up
 
@@ -228,11 +232,11 @@ The deterministic self test started and paused a timer, resumed it, forced compl
 
 ### Issue
 
-Completion is limited to the Lens session and does not run outside an active Lens environment.
+Timer completion initially needed protection against repeated completion events across update frames.
 
 ### Follow-up
 
-Document the boundary clearly and keep platform level notifications as future work.
+Add a completion guard and verify the alert fires exactly once.
 
 ## 10. Add two hand pinch dragging
 
@@ -294,11 +298,11 @@ Preview tests covered cancel, reject, and valid updates, including a six hour th
 
 ### Issue
 
-Capacity updates recalculate scheduling totals and fit state but do not automatically rebalance all existing tasks across lanes.
+Capacity changes update the available-time model without silently moving tasks between lanes, preserving the user's explicit scheduling decisions.
 
 ### Follow-up
 
-Keep this behavior stable in the current version and document the clear model for future optimization.
+Keep this behavior stable as an intentional design choice.
 
 ## 13. Verify adaptive reflow and logical Tomorrow behavior
 
@@ -350,6 +354,6 @@ This log shows a complete engineering cycle:
 
 Prompt -> Build -> Compile -> Preview interact -> Inspect -> Refine
 
-Chronofold evolved from an initial spatial mockup into a responsive Lens with shared schedule state, runtime-generated cards, hand drag, Preview cursor drag, editable capacity, timers, reflow, and action-driven planning flows.
+Chronofold evolved from an initial spatial mockup into a responsive Lens with shared schedule state, runtime-generated task cards, two hand pinch interaction, Preview cursor interaction, editable capacity, task timers, adaptive reflow, overflow management, and guided planning workflows.
 
-CLAD and Codex were not only used to generate code. They were used continuously for scene inspection, verification, error correction, and iteration, which is reflected in the logged flow from prompt to fix at each milestone.
+CLAD and Codex were used throughout the complete development cycle, not only for code generation. They inspected the scene and runtime state, implemented changes, compiled TypeScript, exercised the Lens in Preview, inspected Logger output, captured visual evidence, diagnosed regressions, and refined the implementation. The resulting prompt history documents a continuous Prompt -> Build -> Test -> Inspect -> Fix -> Refine workflow.
