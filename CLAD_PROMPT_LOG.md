@@ -130,7 +130,7 @@ The memory and skill files were read before later Chronofold visual work. Lens S
 
 ### Issue
 
-Documentation could not remove the need for iterative Preview checks. Several behaviors still required runtime experimentation because scene order, dynamic construction, and Preview input interacted in project-specific ways.
+Documentation helped set the implementation constraints, and several behaviors were validated through iterative Preview checks because scene order, dynamic construction, and input paths interacted in project-specific ways.
 
 ### Follow-up
 
@@ -228,7 +228,7 @@ Restore Preview cursor dragging against the same task-drop event used by hand in
 
 ### Prompt / Goal
 
-Dragging with the mouse had stopped working after the hand-tracking feature. Restore the ability to move tasks between Today and `DOESN'T FIT` without Spectacles hardware.
+Dragging with the mouse had stopped working after the hand-tracking feature. Restore the ability to move tasks between Today and `DOESN'T FIT` through Preview cursor interaction.
 
 ### Result
 

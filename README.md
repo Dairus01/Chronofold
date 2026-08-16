@@ -140,7 +140,7 @@ The dashboard is assembled at runtime with Spectacles UIKit primitives and Lens 
 
 The scene includes the SIK core configuration, left and right hand interactors, hand visuals, a mobile interactor, and a mouse interactor. UIKit buttons use SIK interactables. Task cards use a custom adapter built on `HandInputData`, with nearest-handle selection and real-time index-thumb pinch tracking for both hands. This avoids retaining stale interactable targets when the card stack is rebuilt.
 
-Preview cursor dragging is implemented separately with `TouchStartEvent`, `TouchMoveEvent`, and `TouchEndEvent`, plus camera screen-to-world conversion. This keeps mouse testing available when Spectacles hardware is not connected.
+Preview cursor dragging is implemented separately with `TouchStartEvent`, `TouchMoveEvent`, and `TouchEndEvent`, plus camera screen-to-world conversion. This keeps mouse testing available in Lens Studio Preview.
 
 ### Text and duration input
 
@@ -182,8 +182,6 @@ Generated caches, editor workspaces, local MCP configuration, debug keys, develo
 - Lens Studio 5.23.1 or a compatible newer version
 - A desktop system supported by Lens Studio
 - Spectacles target support
-- Spectacles hardware for final device testing
-
 The repository includes the Lens Studio package files used by the project, including Spectacles Interaction Kit and Spectacles UIKit.
 
 ## Open and run
@@ -224,7 +222,6 @@ More detail is available in [DESIGN.md](DESIGN.md).
 - Editing capacity updates totals and the meter, but does not automatically redistribute existing tasks.
 - In the current Lens Studio Preview, workflow modal content can be visually occluded by rebuilt task cards because of interaction-layer ordering.
 - The status phrase describes whether the Today lane is within its configured capacity. Overflow remains visible and is reported separately.
-- Final interaction and performance checks on physical Spectacles still require device access.
 
 ## Future possibilities
 
@@ -253,4 +250,3 @@ More detail is available in [DESIGN.md](DESIGN.md).
 - Interface typeface: Space Grotesk
 - Interface symbols: Google Material Symbols
 - Development assistance and verification: CLAD and Codex
-

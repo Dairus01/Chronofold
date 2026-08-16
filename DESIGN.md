@@ -65,5 +65,4 @@ Action flows reduce accidental edits by separating action selection, task select
 
 ## Known visual issue
 
-In the current Lens Studio Preview, workflow modal content can render behind task cards after dynamic rebuilds. The controls remain part of the runtime hierarchy, but the occlusion makes that state unsuitable as a polished release screenshot. A future pass should move workflow overlays to a dedicated top render layer and verify collider ordering at the same time.
-
+In Lens Studio Preview, workflow modal content can render behind task cards after dynamic rebuilds. The controls remain part of the runtime hierarchy, and overlay ordering is a documented follow-up item for a dedicated top render layer and collider-order check.

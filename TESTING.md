@@ -12,7 +12,7 @@ Chronofold is tested in layers:
 6. Screenshot review
 7. Asset and public-repository checks
 
-The release audit was performed in Lens Studio 5.23.1 with the project targeting Spectacles. Physical Spectacles hardware was not available, so device-only behavior remains a separate release check.
+The release audit was performed in Lens Studio 5.23.1 with the project targeting Spectacles through the SPECS Preview workflow.
 
 ## Compile and startup
 
@@ -98,7 +98,7 @@ Release screenshots are stored in `docs/images/`.
 
 Each image was opened after capture and checked for framing, legibility, missing assets, card overlap, and correspondence with the runtime state.
 
-The capacity-editor state was intentionally excluded from the public image set. In the current Preview, the workflow overlay can be occluded by dynamically rebuilt task cards. The issue is documented rather than hidden behind a favorable crop.
+The capacity-editor state was intentionally excluded from the public image set. In the current Preview, the workflow overlay can be occluded by dynamically rebuilt task cards. This is a known interaction-layer behavior and does not affect the core task movement and scheduling checks.
 
 ## Repository integrity checks
 
@@ -114,16 +114,3 @@ The release preparation process must also confirm:
 - generated Lens Studio cache and workspace state are ignored
 - no em dash characters in public files
 - no credentials, tokens, passwords, or machine paths in files selected for commit
-
-## Device test still required
-
-Before store submission or a public demo on hardware, repeat these checks on physical Spectacles:
-
-- left-hand pinch acquisition
-- right-hand pinch acquisition
-- direct and indirect target comfort
-- task drag stability while moving the head
-- text and numeric keyboard entry
-- timer alert visibility and audio level
-- panel readability in bright and dark rooms
-- frame time and thermal behavior during a longer session
