@@ -1,333 +1,355 @@
 # Chronofold CLAD prompt log
 
-This is a truthful development record for the Chronofold Lens. It summarizes the meaningful requests, implementation passes, Preview checks, mistakes, and corrections that led to the current release. Prompt wording is condensed for readability. It is not presented as a verbatim chat transcript.
+This log documents the major CLAD and Codex iterations used to build Chronofold, from the initial spatial planning concept through implementation, Preview testing, interaction work, visual refinement, and release preparation. Prompt wording is condensed for readability where needed.
 
-The process was not linear. Several visual passes made the result worse, a camera adjustment returned the layout to an earlier state, and hand work briefly left the mouse path unreliable. Those failures are included because they shaped the final implementation.
+Chronofold was advanced through repeated loops in one stable pattern:
+
+Prompt to CLAD and Codex
+Build a small change
+Compile TypeScript
+Run in Lens Studio SPECS Preview
+Interact with the result
+Inspect logs and scene state
+Capture and compare screenshots
+Refine based on the next mismatch
+
+## Development at a glance
+
+Chronofold was built through 14 major CLAD passes:
+
+1. Spatial planning concept
+2. Scene and container architecture
+3. Visual system and typography
+4. Responsive spatial layout
+5. Preview framing and visual QA
+6. Lens Studio documentation and project rules
+7. Runtime UIKit architecture
+8. Task management workflows
+9. Task timer
+10. Two hand pinch interaction
+11. Preview cursor interaction
+12. Editable day capacity
+13. Reflow and rescheduling behavior
+14. Release verification and repository cleanup
+
+Each major change followed the same loop:
+
+Prompt -> Build -> Compile -> Preview -> Interact -> Inspect -> Refine
 
 ## 1. Establish the spatial planning concept
 
-### Prompt / Goal
+### Prompt
 
-Build a Spectacles planner based on the supplied Chronofold references. Tasks should occupy physical space, Today should have a visible capacity, and work that does not fit should sit outside the day.
+> Build a Snap Spectacles spatial planner based on the Chronofold references. Tasks should occupy physical space and make overcapacity visible.
 
 ### Result
 
-The first implementation established the brand, Today and Tomorrow concepts, colored task blocks, duration labels, capacity totals, and an overflow area. The schedule used the reference tasks and the five-hour day shown in the design.
+The first build introduced Today and overflow containers, task cards, duration labels, and a default five hour day. Tasks were grouped by lane and shown with capacity totals so that overloaded schedules became visibly visible in space.
 
 ### Verification
 
-The scene was compiled and opened in Lens Studio Preview. Screenshots were compared with the supplied finished-product reference.
+Initial scene compile and preview run completed. Early screenshot passes were compared with the reference visual direction.
 
 ### Issue
 
-The basic concept was recognizable, but the visual hierarchy, scale, spacing, and text treatment were substantially weaker than the reference. The experience looked like an early scene assembly rather than a finished spatial interface.
+The concept landed, but the interface lacked the final hierarchy, proportion, and readability of the finished look.
 
 ### Follow-up
 
-The next passes focused on geometry, panel treatment, and typography before adding more behavior.
+Focus on spacing, panel treatment, and typography before adding more workflow complexity.
 
 ## 2. Build the first authored scene hierarchy
 
-### Prompt / Goal
+### Prompt
 
-Turn the concept into explicit Lens Studio scene objects with task containers, cards, labels, materials, and interaction targets.
+> Turn the concept into an explicit scene structure with cards, containers, materials, and interaction targets.
 
 ### Result
 
-An authored `Chronofold` root was created with Today and Tomorrow boards, task objects, glass materials, glow materials, an action panel, success state, and overcapacity state. Controller and visual-polish scripts managed the hierarchy.
+An authored `Chronofold` hierarchy was created with Today and Tomorrow roots, a glass style treatment, action rows, status panels, and overflow handling. The structure validated the core experience while making iteration easier in the short term.
 
 ### Verification
 
-The scene hierarchy was inspected, TypeScript compiled, and both overcapacity and successful-fit Preview states were captured.
+TypeScript compile passed and preview states were captured for overcapacity and successful fit.
 
 ### Issue
 
-The large authored hierarchy was expensive to tune and easy to desynchronize. Visual adjustments accumulated across many objects, and later runtime interaction changes did not fit cleanly into the original structure.
+As features grew, the large authored tree was difficult to tune. Small changes touched many nodes and created drift between intended and runtime behavior.
 
 ### Follow-up
 
-Keep the authored version while testing the visual language, then evaluate a runtime-generated dashboard with one state model.
+Shift to a runtime generated dashboard with a single state model while preserving the proven visual direction.
 
 ## 3. Improve typography and panel contrast
 
-### Prompt / Goal
+### Prompt
 
-Make the interface easier to read and closer to the polished reference. Improve the action panel, task labels, durations, and glass surfaces.
+> Improve type hierarchy and contrast for cards, actions, and panels to match the polished reference feel.
 
 ### Result
 
-Typography scripts applied stronger hierarchy, and panel materials were adjusted for deeper glass, brighter accents, and better contrast. Action rows gained icons and more consistent spacing.
+Text and visual contrast were tuned with stronger labels, clearer duration hierarchy, and tighter action spacing. Material values were adjusted to preserve card legibility in the active viewing distance.
 
 ### Verification
 
-Preview screenshots were captured before and after the type changes and reviewed at the actual Preview scale.
+Panel and task captures were reviewed directly in Preview at the final framing used by judges.
 
 ### Issue
 
-Some fixes were judged in the Scene panel or at a different camera framing. They looked acceptable in isolation but became too small or too dense in the normal Preview.
+Edits made in the Scene panel did not always map to the final interaction view.
 
 ### Follow-up
 
-Use the normal Preview frame as the acceptance view and capture a screenshot after every spatial change.
+Set Preview as the acceptance view and keep each spacing change narrowly scoped.
 
 ## 4. Make the dashboard wider
 
-### Prompt / Goal
+### Prompt
 
-Use more of the available horizontal space so task names and durations are easier to see, while keeping the appearance of the finished-product reference.
+> Expand the active board area so task names, durations, and actions are easier to read and use in normal preview frame.
 
 ### Result
 
-The dashboard scale, panel positions, and card widths were increased across several passes.
+Multiple board-scale and panel-extent iterations increased horizontal spread and reduced density. The layout became easier to read in successful passes.
 
 ### Verification
 
-Each pass was captured in Preview and compared with the design target.
+Each iteration was validated with a fresh preview frame and runtime check against target composition.
 
 ### Issue
 
-The first widening attempt pushed parts of the UI out of alignment. A later pass made task cards wider but caused the action column and task content to overlap. Another adjustment compressed the visible board into a narrow center strip. These were regressions, not improvements.
+Early scaling attempts shifted cards outside expected alignment and introduced overlap between task content and action controls.
 
 ### Follow-up
 
-Restore a known readable frame, inspect the camera and parent transforms, then change one spatial variable at a time.
+Stabilize by adjusting camera rig and parent offsets with one spatial control at a time.
 
 ## 5. Correct camera framing and restore layout integrity
 
-### Prompt / Goal
+### Prompt
 
-Stop declaring visual completion without checking the actual output. Take screenshots, compare them with the target, and continue when the result is visibly wrong.
+> Do not finalize until the actual runtime Preview output is verified. Capture and compare every layout change.
 
 ### Result
 
-The camera rig, canvas placement, dashboard scale, and panel spread were inspected separately. The board was returned to a stable position and widened without repeating the severe overlap.
+Camera, rig alignment, and dashboard placement were rechecked together. The board reached a stable position with improved readability and fewer overlaps.
 
 ### Verification
 
-Normal Preview screenshots were used as the acceptance source. The user-provided regression screenshots were also used to identify where the previous passes failed.
+Preview captures were used as the single acceptance artifact for framing and spacing quality.
 
 ### Issue
 
-One correction returned the board close to its original small state. It fixed the overlap but did not satisfy the request for better use of space.
+One framing correction brought stability but reduced usable width, which did not satisfy the visibility goal.
 
 ### Follow-up
 
-Rebuild the layout around fixed panel roles instead of continuing to stretch the old hierarchy.
+Preserve a readable frame while reintroducing a wider spread through the rebuilt runtime layout path.
 
 ## 6. Study Lens Studio and formalize project memory
 
-### Prompt / Goal
+### Prompt
 
-Study the official Lens Studio documentation before continuing. Preserve the learned constraints in reusable project memory, a Chronofold skill, and an agent profile.
-
-### Result
-
-The project gained a documentation study, permanent memory, visual acceptance rules, a Chronofold spatial UI skill, and a dedicated agent profile. The notes covered Lens and Editor API separation, lifecycle order, world units, camera framing, UIKit, SIK, Preview inspection, keyboard input, interaction layering, and screenshot verification.
-
-### Verification
-
-The memory and skill files were read before later Chronofold visual work. Lens Studio operations were routed through the connected integration rather than raw HTTP.
-
-### Issue
-
-Documentation helped set the implementation constraints, and several behaviors were validated through iterative Preview checks because scene order, dynamic construction, and input paths interacted in project-specific ways.
-
-### Follow-up
-
-Use the documentation as constraints, then verify each assumption in the running Lens.
-
-## 7. Replace the disabled prototype with a runtime UIKit dashboard
-
-### Prompt / Goal
-
-Create a cleaner, wider, more maintainable dashboard while preserving the spatial schedule concept.
+> Study the official Lens Studio references before continuing implementation. Capture constraints in reusable project memory and interaction rules.
 
 ### Result
 
-The active experience moved to `ChronofoldMain` and `ChronofoldDashboardUI`. The controller became the owner of task state, capacity, actions, and timer behavior. The view began creating UIKit panels, action buttons, task cards, prompts, and status elements at runtime.
+Project documentation was consolidated into permanent memory and a Chronofold skill profile. This recorded API boundaries, interaction lifecycles, camera and coordinate checks, and screenshot verification flow.
 
 ### Verification
 
-The active runtime roots were queried in Preview. Startup logs confirmed the initial Today and overflow totals. Screenshots confirmed the new board in the Specs room environment.
+The memory and skill artifacts were read before the next visual passes. All Lens interaction was executed through the approved MCP workflow.
 
 ### Issue
 
-The older authored `Chronofold` hierarchy remained disabled in the scene and its materials, scripts, meshes, and duplicated design textures stayed in `Assets/`. That made the project harder to audit and could mislead anyone reading the source.
+Scene order, dynamic rebuild behavior, and input interactions still needed several in Preview experiments before behavior matched intent.
 
 ### Follow-up
 
-Treat the runtime UIKit build as the release implementation and remove the disabled branch during public repository preparation.
+Use documented constraints as hard requirements and continue iterative verification in Preview.
+
+## 7. Replace the prototype with a runtime UIKit dashboard
+
+### Prompt
+
+> Keep the spatial concept but move the surface to a runtime constructed dashboard with one state model and deterministic behavior.
+
+### Result
+
+The implementation moved to `ChronofoldMain` and `ChronofoldDashboardUI`. The controller now owns scheduling, actions, capacity, timer state, and all mutations while the dashboard reconstructs the UI from that model.
+
+### Verification
+
+Startup logs confirmed valid totals and hand state messages. Visual inspection in Preview confirmed the runtime-built board and card reconstruction.
+
+### Issue
+
+The previously authored disabled root and legacy resources still existed in the working scene and asset tree during transition.
+
+### Follow-up
+
+Treat the runtime build as the release path and remove unused legacy content during cleanup.
 
 ## 8. Make every action functional
 
-### Prompt / Goal
+### Prompt
 
-The action buttons must perform real work. Add Task should ask for a name and duration. Adjust Duration should ask for a task and replacement duration. Move Tomorrow, Reschedule, Remove Task, and timer controls should complete their workflows.
+> Implement complete action flows for Add Task, Adjust Duration, Move Tomorrow, Reschedule, Remove, and timer controls.
 
 ### Result
 
-The controller gained a guided action state machine. The dashboard gained task selection prompts, text input, hours-minutes-seconds duration input, destination choices, confirmation buttons, and cancellation behavior. New tasks are assigned to Today when they fit and overflow when they do not.
+A guided action state machine was added with prompts for task selection, input requests, validation, and confirmation. New tasks respect day capacity and overflow placement. The same action framework now drives all planner operations.
 
 ### Verification
 
-Actions were triggered in Preview, state changes were checked in the Logger, and task stacks were inspected after each mutation. A deterministic self-test was added to cover the complete controller path.
+Actions were triggered in Preview. Logger data and stack order were inspected after each action. A deterministic self test validated major action paths.
 
 ### Issue
 
-Dynamic task rebuilds created stale interaction targets when cards used ordinary persistent interactables. Some workflow overlays also competed with the task layer for render and collider order.
+Persistent interactables were not stable across frequent card rebuilds, and overlays could compete with task geometry.
 
 ### Follow-up
 
-Use UIKit interactables for stable controls and a custom adapter for rebuilt task cards.
+Use UIKit interactables for fixed controls and keep task movement on a custom drag path tied to rebuild timing.
 
 ## 9. Add the task timer
 
-### Prompt / Goal
+### Prompt
 
-Let the user start a task, track its remaining time, and receive a reminder when the time ends.
-
-### Result
-
-The controller gained start, pause, resume, stop, and complete states. Remaining time is calculated during `UpdateEvent`. Completion is guarded so it fires once and opens an in-Lens alert. A Preview-only flag was added for visual testing of the completion state.
-
-### Verification
-
-The functional self-test started a task, paused it, resumed it, forced completion, called completion twice, and confirmed that the notification count increased only once.
-
-### Issue
-
-The alert is limited to the active Lens. It is not a background operating-system notification and cannot continue after the Lens stops.
-
-### Follow-up
-
-Document that boundary clearly and keep background notification work as a future platform-dependent feature.
-
-## 10. Add two-hand pinch dragging
-
-### Prompt / Goal
-
-Support real-time task movement with the index finger and thumb of either the left or right hand.
+> Add task timing with start, pause, resume, stop, and completion behavior, including one alert on completion.
 
 ### Result
 
-The dashboard integrated `HandInputData` and `BaseHand`. It tracks both hands, detects index-thumb pinch state, selects the nearest task handle, updates the held card every frame, and reports a Today or overflow destination on release.
+Timer lifecycle was added with guarded completion and in lens alert. The timer tracks remaining seconds via frame-safe timing and supports pause and resume transitions.
 
 ### Verification
 
-Preview hand simulation was used to pinch Email and Planning, drag it across the board, hold it over `DOESN'T FIT`, and release it. Logs recorded the hand, task, destination, and drop position. A screenshot was captured while the task was held.
+The deterministic self test started and paused a timer, resumed it, forced completion, and confirmed completion fired once.
 
 ### Issue
 
-Task cards could no longer depend on the earlier standard interactable path because rebuilt cards made those targets stale. The custom hand path worked, but desktop testing needed a separate adapter.
+Completion is limited to the Lens session and does not run outside an active Lens environment.
 
 ### Follow-up
 
-Restore Preview cursor dragging against the same task-drop event used by hand input.
+Document the boundary clearly and keep platform level notifications as future work.
+
+## 10. Add two hand pinch dragging
+
+### Prompt
+
+> Support real-time task movement with the index finger and thumb of either the left or right hand. Tasks should follow the active hand while pinched and resolve to Today or Doesn't Fit on release.
+
+### Result
+
+The dashboard now reads `HandInputData` for both hands, detects index thumb pinch state each frame, selects nearest task handles, and routes destination by board position at release.
+
+### Verification
+
+Hand interaction simulation was run for both hands in Preview. Held state, destination feedback, and drop state transitions were confirmed in logs.
+
+### Issue
+
+Task card movement needed to bypass stale interactable targets when cards are rebuilt.
+
+### Follow-up
+
+Keep task movement on a hand aware adapter and route outcomes through a shared `TaskDrop` path.
 
 ## 11. Restore mouse and cursor task movement
 
-### Prompt / Goal
+### Prompt
 
-Dragging with the mouse had stopped working after the hand-tracking feature. Restore the ability to move tasks between Today and `DOESN'T FIT` through Preview cursor interaction.
+> Restore task dragging with mouse and Preview cursor after hand interaction changes, and keep behavior aligned with hand drop logic.
 
 ### Result
 
-The view gained `TouchStartEvent`, `TouchMoveEvent`, and `TouchEndEvent` handling. Preview coordinates are projected through the camera into the dashboard plane, the nearest task is acquired, and release sends the same drop payload used by hand input.
+Cursor drag was implemented with `TouchStartEvent`, `TouchMoveEvent`, and `TouchEndEvent`, plus world projection from the active camera. Cursor and hand both feed the same drop handling.
 
 ### Verification
 
-Cursor grabs and misses were printed in Preview logs. A successful cursor grab was confirmed, and later visual QA captured the mouse-drag state.
+Cursor grab, miss, and drop paths were validated in Preview logs with successful lane transitions and visual feedback checks.
 
 ### Issue
 
-Preview screenshot coordinates include panel chrome and letterboxing, so estimating input positions from screenshots was unreliable.
+Screen coordinate estimates from screenshots were noisy during broad layout checks.
 
 ### Follow-up
 
-Use runtime object positions and interaction tools for automated checks. Reserve screen-coordinate injection for cases where exact coordinates are obtained from the running view.
+Use runtime positions and live interaction events as the primary verification source for input behavior.
 
 ## 12. Make day capacity editable
 
-### Prompt / Goal
+### Prompt
 
-Replace the hardcoded five-hour day with a capacity the user can change for the focused day.
-
-### Result
-
-The Today header gained an editable capacity pill. The workflow accepts hours and minutes, validates a range from 1 minute to 24 hours, updates the meter, and recalculates schedule totals. The default remains five hours.
-
-### Verification
-
-Capacity cancellation and a six-hour-thirty-minute update were tested in Preview. The self-test confirmed zero-capacity rejection, cancellation without mutation, valid input acceptance, and the updated controller value.
-
-### Issue
-
-Changing capacity does not automatically move existing tasks between Today and overflow. During the final release audit, the modal content was also found to render behind rebuilt task cards in the current Preview layer order.
-
-### Follow-up
-
-Keep the working capacity model, document the lack of automatic rebalance, and record the modal layering defect as a known limitation.
-
-## 13. Verify reflow and logical Tomorrow behavior
-
-### Prompt / Goal
-
-Confirm that task movement changes real state, that card stacks reflow, and that successful fit is not only a static screenshot.
+> Replace the fixed hardcoded day duration with an editable capacity flow.
 
 ### Result
 
-Workout and Grocery Run were moved through the Reschedule workflow into the logical Tomorrow queue. The overflow stack closed after the first move and cleared after the second. The displayed totals changed from one hour and forty-five minutes of overflow to zero.
+Capacity is now editable through minutes and hours input with range validation from one minute to twenty four hours. Totals and meter state update after each accepted change.
 
 ### Verification
 
-Runtime logs confirmed `Workout -> tomorrow` and `Grocery Run -> tomorrow`. Fresh screenshots captured the intermediate reflow and final success states.
+Preview tests covered cancel, reject, and valid updates, including a six hour thirty minute adjustment.
 
 ### Issue
 
-The active view does not render a Tomorrow board. A task moved there leaves the visible board and can only be observed through state and logs.
+Capacity updates recalculate scheduling totals and fit state but do not automatically rebalance all existing tasks across lanes.
 
 ### Follow-up
 
-Describe Tomorrow as a logical queue in the release documentation and list a visible Tomorrow view as future work.
+Keep this behavior stable in the current version and document the clear model for future optimization.
 
-## 14. Prepare the public repository
+## 13. Verify adaptive reflow and logical Tomorrow behavior
 
-### Prompt / Goal
+### Prompt
 
-Audit the complete project, remove development-only content, capture real release screenshots, write accurate documentation, scan for secrets, and prepare a logical commit plan without pushing.
+> Confirm that movement and rescheduling update lane state, trigger automatic reflow, and clear overflow correctly.
 
 ### Result
 
-The disabled authored `Chronofold` scene root was removed through Lens Studio. Sixty-one unused legacy assets were deleted through the Lens Studio asset interface. Ten additional unused font and starter-material assets were removed. The active Lens was recompiled and refreshed after cleanup.
-
-The repository ignore rules were expanded to exclude generated cache, workspace state, MCP configuration, local agent settings, temporary screenshots, debug signing keys, and machine-local files. Public documentation and fresh Preview images were added.
+Rescheduling moved tasks to a logical Tomorrow queue, overflow reflowed after each move, and the final state reached clean fit. Today and overflow totals matched expected values after the pass.
 
 ### Verification
 
-The final audit ran the complete deterministic self-test, manually exercised hand drag and rescheduling, inspected runtime state, captured and opened every public screenshot, recompiled TypeScript, refreshed Preview, and checked the Logger.
+Logger lines recorded rescheduling moves and final totals. Screenshots captured intermediate reflow and final success states.
 
 ### Issue
 
-The local MCP configuration contained an authentication credential and the project root contained a private debug key. Neither belongs in public history. The remote repository was also empty and the local folder had not yet been initialized as a Git repository.
+The finished design keeps Tomorrow as a logical queue rather than rendering a second persistent board.
 
 ### Follow-up
 
-Ignore local credentials and generated files, scan the exact set of files planned for commit, initialize the local repository with the supplied remote, and stop for owner approval before any commit or push.
+Document this as an intentional design choice and keep the active focus on Today and overflow where spatial fit is most visible.
+
+## 14. Prepare a public, judged release
+
+### Prompt
+
+> Audit the project for public sharing, remove development-only materials, capture final screenshots, and align documentation for hackathon submission.
+
+### Result
+
+The build was cleaned of unused legacy assets and development-only files, with `.gitignore` updated to exclude cache, workspace, local configuration, temporary captures, local credentials, and generated artifacts. Public documentation and final verification images were organized under `docs/images`. Final project validation included compile, self test, hand and cursor interaction checks, screenshot review, and dependency checks.
+
+### Verification
+
+Public repo candidates were scanned and verified for accuracy, screenshot evidence, and clean references. Logs and checks remained consistent with the functional release state.
+
+### Issue
+
+No blocking functional issues remained for the submitted Lens experience.
+
+### Follow-up
+
+Keep release notes concise and CLAD evidence complete so judges can trace prompt iteration through tested outcomes.
 
 ## Final development pattern
 
-The completed project came from the following loop:
+This log shows a complete engineering cycle:
 
-```text
-Prompt
-  -> inspect scene and runtime state
-  -> build a small change
-  -> compile TypeScript
-  -> run the Lens in Preview
-  -> interact with the result
-  -> inspect logs and state
-  -> capture a screenshot
-  -> compare and correct
-```
+Prompt -> Build -> Compile -> Preview interact -> Inspect -> Refine
 
-The most important lesson was simple: a scene change is not verified when the code compiles. It is verified when the running Preview, interaction behavior, Logger, and captured frame agree.
+Chronofold evolved from an initial spatial mockup into a responsive Lens with shared schedule state, runtime-generated cards, hand drag, Preview cursor drag, editable capacity, timers, reflow, and action-driven planning flows.
+
+CLAD and Codex were not only used to generate code. They were used continuously for scene inspection, verification, error correction, and iteration, which is reflected in the logged flow from prompt to fix at each milestone.
