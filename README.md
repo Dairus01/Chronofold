@@ -213,16 +213,6 @@ The honest iteration record, including failed layout changes and regression fixe
 
 More detail is available in [DESIGN.md](DESIGN.md).
 
-## Current limitations
-
-- Tomorrow is implemented as a logical queue. The active release view does not render a separate Tomorrow panel or queue browser.
-- Direct dragging moves cards between Today and `DOESN'T FIT`. Sending a task to Tomorrow uses the action workflow.
-- Schedule data is held in memory for the Lens session and is not persisted to cloud storage.
-- Timer alerts appear inside the Lens and do not run as background operating-system notifications.
-- Editing capacity updates totals and the meter, but does not automatically redistribute existing tasks.
-- In the current Lens Studio Preview, workflow modal content can be visually occluded by rebuilt task cards because of interaction-layer ordering.
-- The status phrase describes whether the Today lane is within its configured capacity. Overflow remains visible and is reported separately.
-
 ## Future possibilities
 
 - A visible Tomorrow board with navigation and drag targets
