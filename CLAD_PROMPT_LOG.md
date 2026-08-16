@@ -38,7 +38,7 @@ Prompt -> Build -> Compile -> Preview -> Interact -> Inspect -> Refine
 
 ## How CLAD was used
 
-CLAD and Codex operated against the live Lens Studio project through the connected Lens Studio integration. They were used to inspect scene hierarchy and runtime state, modify TypeScript and scene configuration, compile the project, run Preview, simulate interactions, inspect Logger output, capture screenshots, compare visual results, diagnose regressions, and repeat implementation passes. The workflow stayed connected to the live runtime instead of moving as a one off script pass.
+CLAD and Codex worked against the live Lens Studio project through the connected Lens Studio integration. They were used for scene inspection, TypeScript changes, runtime queries, Preview interaction, Logger inspection, screenshot capture, regression diagnosis, and iterative visual refinement.
 
 ## 1. Establish the spatial planning concept
 
