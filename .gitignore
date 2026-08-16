@@ -1,0 +1,45 @@
+# BEGIN Lens Studio managed Agents-Docs block
+.mcp.json
+.cursor/mcp.json
+.vscode/mcp.json
+.codex/config.toml
+.claude/settings.local.json
+# END Lens Studio managed Agents-Docs block
+
+# Lens Studio generated and machine-local state
+Cache/
+Support/
+Workspaces/
+PluginsUserPreferences/
+.virtual-scene.json
+*.esproj.*.lock
+
+# Local editor and agent configuration
+.claude/
+.codex/
+.cursor/
+.vscode/
+AGENTS.md
+CLAUDE.md
+ChronofoldKnowledge/
+
+# Development captures and temporary tooling
+.font_tmp/
+.icon_tmp/
+Screenshots/
+VisualQA/
+preview_*.png
+tempAssetGen/
+design/*
+!design/01_chronofold_logo.png
+!design/02_finished_product_hero.png
+
+# Local credentials and logs
+*.pem
+*.key
+*.log
+
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
