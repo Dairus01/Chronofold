@@ -1,0 +1,62 @@
+- !<AssetImportMetadata/859fb8b8-d044-4d39-942f-6432686a4bbf>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 3c6b31b4-7ed9-49b7-9454-48de166526aa
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 3c6b31b4-7ed9-49b7-9454-48de166526aa
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> d777f976-5f96-48d3-b9c8-eab96f6c1f81
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/d777f976-5f96-48d3-b9c8-eab96f6c1f81>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: cba5d539-0cd0-47ab-a3e6-f387eb5e47ff
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    dangerColor: false
+    globalScale: false
+    panelGap: false
+    panelOpacity: false
+    primaryTextColor: false
+    successColor: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - globalScale: 0.880000
+      panelGap: 0.900000
+      primaryTextColor: !<Vec4> {x: 0.950000, y: 0.980000, z: 1.000000, w: 1.000000}
+      successColor: !<Vec4> {x: 0.310000, y: 1.000000, z: 0.620000, w: 1.000000}
+      dangerColor: !<Vec4> {x: 1.000000, y: 0.290000, z: 0.400000, w: 1.000000}
+      panelOpacity: 0.880000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"label", "label":"<span style=\"color:#62F5A8;\">Chronofold spatial dashboard</span>"}'
+    - '// @input float globalScale = 1.08 {"hint":"Global scale for the complete dashboard", "widget":"slider", "min":0.75, "max":1.15, "step":0.01}'
+    - '// @input float panelGap = 0.9 {"hint":"Spacing between primary panels", "widget":"slider", "min":0.5, "max":1.6, "step":0.05}'
+    - '// @input vec4 primaryTextColor = {0.95,0.98,1,1} {"hint":"Primary text color"}'
+    - '// @input vec4 successColor = {0.31,1,0.62,1} {"hint":"Positive capacity and success accent"}'
+    - '// @input vec4 dangerColor = {1,0.29,0.4,1} {"hint":"Overflow and warning accent"}'
+    - '// @input float panelOpacity = 0.88 {"hint":"Opacity of dark glass surfaces", "widget":"slider", "min":0.55, "max":1, "step":0.01}'
