@@ -1,0 +1,17 @@
+* text=auto
+
+*.md text eol=lf
+*.ts text eol=lf
+*.json text eol=lf
+*.esproj text eol=lf
+*.scene text eol=lf
+*.meta text eol=lf
+*.graphShader text eol=lf
+*.mat text eol=lf
+
+*.png binary
+*.wav binary
+*.ttf binary
+*.hdr binary
+*.lspkg binary
+*.lsc binary
