@@ -8,6 +8,10 @@
 
 Chronofold is a spatial productivity planner for Snap Spectacles where tasks take up physical space and overloaded days literally do not fit.
 
+## Demo
+
+[Watch the Chronofold demo video](https://drive.google.com/file/d/1yFMG5wc4aYtme4h7GRbG80WSjtDHHZgD/view)
+
 ![Chronofold running in Lens Studio Preview](docs/images/chronofold-main-view.png)
 
 ## Hackathon context
